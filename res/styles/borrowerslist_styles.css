@@ -1,0 +1,30 @@
+.borrowers-list{
+    display: block;
+    column-count: 1;
+    column-width: 25vw;
+    justify-items: center;
+    
+    list-style: none;            
+
+}
+.list-entry{          
+                         
+   text-align: left;
+   border-bottom: 2px solid black;          
+   margin-bottom: 1.5em;
+   padding-left: 2em;
+   padding-bottom: 2em;           
+}
+.name-label{
+    font-weight: bold;
+}
+.loan-list{
+    list-style: square;
+}
+.cover-thumbnail{
+    height: 250px;
+    width:auto;
+}
+.title{
+    vertical-align: middle;
+}

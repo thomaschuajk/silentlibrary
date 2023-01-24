@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="../res/styles/header_style.css">
+
+
+<div id="logo">
+    <img src="../res/img/library_icon.jpg">
+    Silent&nbsp;Library
+</div>
+<nav>
+    <ul>
+        <li><a href="bookslist.html">Books</a>
+        <li><a href="eventslist.html">Events</a>
+        <li><a href="borrowerslist.html">Borrowers</a>
+        <li id="mbrRegister"><a href="mbrLandPage.html">Membership</a>
+        <li><a href="#">Contact Us</a>                
+    </ul>    
+
+</nav>
+<script type="text/javascript" defer>
+
+    // Add in Admin option in nav bar
+    let urlStr = window.location.href.toString();
+    if(urlStr.includes("mbrRegister")){
+        let navBar = document.getElementById("mbrRegister");
+        let adminOption = "<li><a onclick='adminAuthorisation()'>Admin</a>";
+        navBar.insertAdjacentHTML("afterend",adminOption);
+    }
+
+    function adminAuthorisation(){
+        let adminPassword = prompt("Enter Administrator Password");
+        if(adminPassword === "123"){
+            window.location.assign("mbrAdmin.html");
+        }
+    }
+</script>

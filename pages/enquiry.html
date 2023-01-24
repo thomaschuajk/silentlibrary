@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("header").load("header.html");
+            $("footer").load("footer.html");
+        })
+    </script>
+    <style>       
+        
+        main{
+            text-align: center;
+            /* justify-items: center; */
+        }
+        ul{
+            margin-top: 2.5em;
+            list-style: none;
+            line-height: 2.5em;
+        }
+        textarea{
+            margin-top: 1.5em;
+        }
+        .btn {
+            color: black;
+            font-weight: bolder;
+        }
+    </style>
+    
+    <title>Silent Library</title>
+    
+</head>
+<body>
+    <header>       
+		
+	</header>
+   
+    <main>
+        <h3>Enquiry Form</h3>       
+        <ul>
+            <li id="emailInput"><label>Contact Email: <input type="email"></label></li>           
+            <li><textarea rows="4" cols="50" name="enquiry" form="eventEnquiryForm">Enter text here...</textarea></li>
+            <li><input type="submit" class="btn btn-info"></li>
+        </ul>
+    </main>
+    <footer>
+                
+    </footer>
+    <script type="text/javascript" defer>
+        //Check if url has param isEventEnquiry=true
+        let url = new URL(window.location.href)
+        let isEventEnquiryParamValue = url.searchParams.get("EventEnquiry");
+        let isEventEnquiry = (isEventEnquiryParamValue === 'true');
+        let eventCodeOption = " <li><label>Event Code: <input type='text'></label></li>";
+        let emailInput = document.getElementById("emailInput");        
+
+        if(isEventEnquiry){
+            $("h3").html("Event Enquiry Form");
+            emailInput.insertAdjacentHTML("afterend",eventCodeOption);
+        }
+ 
+    </script>
+</body>
+</html>

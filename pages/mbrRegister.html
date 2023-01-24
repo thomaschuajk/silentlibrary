@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("header").load("header.html");
+            $("footer").load("footer.html");
+        })
+
+    </script>
+    <style>
+        
+        /* .ul-container > ul{
+            display: block;
+            column-count: 2;
+            list-style: none;            
+
+        }
+        .ul-container > ul > li{
+            text-align: center;            
+
+        }
+        
+        .cover-thumbnail{
+            height: 250px;
+            width:auto;
+        }
+        .title{
+            vertical-align: middle;
+        } */
+        main{
+            text-align: center;
+            /* justify-items: center; */
+        }
+        ul{
+            line-height: 2.5em;
+            list-style: none;
+            
+        }
+        input[type=radio]{
+            display: inline;
+        }
+        .grid-container{
+            display: grid;
+            grid-template-columns: auto auto;            
+        }
+    </style>
+    
+    <title>Silent Library</title>
+   
+    
+</head>
+<body>
+    <header>       
+		
+	</header>
+   
+    <main>
+        <h3>Please Furnish All Detail</h3>
+        
+        <form
+            action=""
+            id="mbr-form"
+            onsubmit="event.preventDefault();SignUpOnClick()"
+            autocomplete="off"
+        >
+            <ul>
+                <li>
+                    <input type="text" id="fname" placeholder="Enter Your First Name" value="">                    
+                    <input type="text" id="lname" placeholder="Enter Your Last Name" value="">                    
+                </li>
+                <li>
+                    <label for="nationality">Nationality: </label>
+                    <select id="nationality">
+                        <option value="SC">Singaporean</option>
+                        <option value="PR">PR</option>
+                        <option value="FR">Foreigner</option>
+                    </select>
+                    <label for="idNum">ID Number: </label>
+                    <input type="text" id="idNum">
+                </li>
+                <li>                                       
+                    <label for="male"> <input type="radio" name="genders" value="M"> Male</label>                    
+                    <label for="female"><input type="radio" name="genders" value="F" checked>Female</label>
+                </li>
+                <li>
+                    <label>Date Of Birth</label>
+                    <input type="date" id="dob" name="dob">
+                </li>
+                <li>                    
+                    <li>
+                        <label for="interest1">Interest #1 
+                            <select id="interest1" name="interests">
+                                <option value="#scitech">Science & Tech</option>
+                                <option value="#social">Social</option>
+                                <option value="#horror">Horror</option>
+                                <option value="#satire-classic">Satire Classic</option>
+                            </select>
+                        </label>              
+                    </li>
+                    <li>
+                        <label for="interest2">Interest #2 
+                            <select id="interest2" name="interests">
+                                <option value="#scitech">Science & Tech</option>
+                                <option value="#social">Social</option>
+                                <option value="#horror">Horror</option>
+                                <option value="#satire-classic">Satire Classic</option>
+                            </select>
+                        </label>          
+                    </li>
+                    <li>
+                        <label for="interest3">Interest #3 
+                            <select id="interest3" name="interests">
+                                <option value="#scitech">Science & Tech</option>
+                                <option value="#social">Social</option>
+                                <option value="#horror">Horror</option>
+                                <option value="#satire-classic">Satire Classic</option>
+                            </select>
+                        </label>
+                    </li>
+                    <h4>Contact Details</h4>
+                    <li>
+                        <input type="text" name="address" placeholder="Enter Unit Number">
+                        <input type="text" name="address" placeholder="Enter Postal Code">                                      
+                    </li>
+                    <li>                        
+                        <input id="mobile" type="tel" placeholder="Enter Mobile Number">                      
+                        <input id="email" type="email" placeholder="Enter Email">             
+                    </li>
+                    
+                </li>
+            </ul>
+            <button type="submit" id="SignUp" class="btn btn-primary" onclick="SignUpOnClick()">Sign Up</button>
+            <p id="testOutput"></p>
+            
+        </form>
+    </main>
+    <footer>
+                
+    </footer>
+    <script type="text/javascript" defer>      
+
+        //Check if url has param isUpdate=true
+        let url = new URL(window.location.href)
+        let isUpdateParamValue = url.searchParams.get("Update");
+        let isUpdate = (isUpdateParamValue === 'true');
+        console.log(isUpdate);
+
+        var alertMsgVariable = "registered"
+
+        if(isUpdate){
+            let mbrId = url.searchParams.get("Id");
+            PullOutData(mbrId);
+            let btnSignUp = document.getElementById("SignUp");
+            btnSignUp.innerHTML="Update"
+            alertMsgVariable = "updated"
+        }
+        
+        function SignUpOnClick(){           
+             
+            var idnum = document.getElementById("idNum").value;
+            var fname = document.getElementById('fname').value;
+            var lname = document.getElementById('lname').value;
+            var natnl = document.getElementById('nationality').value;
+            var gender = (function(){
+                let genders = document.getElementsByName("genders");                
+                for (let i = 0; i < genders.length; i++) {
+                    if(genders[i].checked){
+                        let gender = genders[i].value;
+                        return gender;
+                    }                                        
+                }
+                return "";
+            })();
+            var dob = document.getElementById('dob').value;
+            var interests = (
+                function(){
+                    let interestsArray = document.getElementsByName("interests");
+                    
+                    let interests ="";
+                    for (let index = 0; index < interestsArray.length; index++) {
+                        let select = interestsArray[index];                           
+                        let value = select.options[select.selectedIndex].value;
+                        console.log(value); 
+                        if(index == 0){
+                            interests = value;
+                        } else {
+                            interests += `,${value}`;
+                        }
+                        
+                        
+                    }
+                    return interests;
+                }
+            )();
+            var address = (
+                function(){
+                    let addressDetailsArray = document.getElementsByName("address");
+                    let unitNo = addressDetailsArray[0].value;
+                    let postal = addressDetailsArray[1].value;                    
+                    let addressDetails = `${unitNo} S${postal}`;
+                    
+                    return addressDetails;
+                }
+            )();
+
+            var mobile = document.getElementById('mobile').value;
+            var email = document.getElementById('email').value;
+
+            // var largestNumber = 0;
+
+            // if (localStorage.length >= 0) {
+            //     Object.keys(localStorage).forEach(function (key) {
+            //     if (largestNumber < JSON.parse(localStorage.getItem(key))._Id) {
+            //         largestNumber = JSON.parse(localStorage.getItem(key))._Id;
+            //     }
+            //     });
+            // }
+
+            // var generatedId = largestNumber + 1;
+            // console.log(generatedId);
+            
+            var newEntry = {
+                _Id: idnum,                      
+                _fname:fname,
+                _lname:lname,
+                _nationality:natnl,
+                _gender:gender,
+                _dob:dob,
+                _interests:interests,
+                _address:address,
+                _mobile:mobile,
+                _email:email
+            };
+            
+            var mbrInfo = JSON.stringify(newEntry);
+            localStorage.setItem(`${newEntry._Id}`,mbrInfo)
+            alert(`${newEntry._Id} ${alertMsgVariable} Successfully!`);
+            window.location.assign("mbrRegister.html?Id=mbrInfo_" + newEntry._Id);
+
+            //const data = localStorage.getItem(`${id}`);
+            //console.log("data",JSON.parse(data))
+        }
+
+        function PullOutData(Id){
+            let mbrInfo = JSON.parse(localStorage.getItem(Id));
+            console.log(`Info of Member ${Id}`)
+            console.log(mbrInfo);
+
+           $("#fname").val(`${mbrInfo._fname}`);
+           $("#lname").val(`${mbrInfo._lname}`);
+           $("#nationality").val(`${mbrInfo._nationality}`);
+           $("#idNum").val(`${mbrInfo._Id}`);
+           let genders = document.getElementsByName("genders");
+           genders.forEach(option =>{
+            if(option.value == `${mbrInfo._gender}`){
+                option.checked = true;
+            }
+           })
+           $("#dob").val(`${mbrInfo._dob}`);
+
+           let interestInputs = document.getElementsByName("interests");
+           let interestsArray = mbrInfo._interests.split(',');
+           for(let i=0; i<interestInputs.length; i++){
+            interestInputs[i].value = interestsArray[i];
+           }
+
+           let addressInputs = document.getElementsByName("address");
+           let addressArray = mbrInfo._address.split(' ');
+           for(let i = 0; i<addressInputs.length; i++){
+            addressInputs[i].value = addressArray[i];
+           }
+
+           $("#mobile").val(`${mbrInfo._mobile}`);
+           $("#email").val(`${mbrInfo._email}`);          
+                        
+        }
+    </script>    
+</body>
+</html>

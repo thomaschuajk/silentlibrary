@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" defer>
+        $(document).ready(function(){
+            $("header").load("header.html");
+            $("footer").load("footer.html");
+            
+            CreateTable();
+        });
+        function CreateTable() {          
+            
+            // var _mbrInfos = [];
+            var _mbrInfos = {};
+
+            Object.keys(localStorage).forEach(function (key) {
+            if (JSON.parse(localStorage.getItem(key))._Id != undefined) {
+                //_mbrInfos.push(JSON.parse(localStorage.getItem(key)));
+                let _key = JSON.parse(localStorage.getItem(key))._Id;
+                _mbrInfos[_key] = JSON.parse(localStorage.getItem(key));
+            }
+            });
+
+            //Create a HTML Table element.
+            var table = $("<table><table />").addClass("table tabled-striped table-bordered table-hovered");
+
+            //Add the header row.
+            var row = $(table[0].insertRow(-1));
+
+            var headerCell_1 = $("<th />");
+            headerCell_1.html("Id");
+            row.append(headerCell_1);
+
+            var headerCell_2 = $("<th />");
+            headerCell_2.html("First Name");
+            row.append(headerCell_2);
+
+            var headerCell_3 = $("<th />");
+            headerCell_3.html("Last Name");
+            row.append(headerCell_3);
+
+            var headerCell_4 = $("<th />");
+            headerCell_4.html("Nationality");
+            row.append(headerCell_4);
+            
+            var headerCell_5 = $("<th />");
+            headerCell_5.html("Gender");
+            row.append(headerCell_5);
+
+            var headerCell_6 = $("<th />");
+            headerCell_6.html("DOB");
+            row.append(headerCell_6);
+
+            var headerCell_7 = $("<th />");
+            headerCell_7.html("Interests");
+            row.append(headerCell_7);
+
+            var headerCell_8 = $("<th />");
+            headerCell_8.html("Address");
+            row.append(headerCell_8);
+
+            var headerCell_9 = $("<th />");
+            headerCell_9.html("Mobile");
+            row.append(headerCell_9);
+
+            var headerCell_10 = $("<th />");
+            headerCell_10.html("Email");
+            row.append(headerCell_10);
+
+            var headerCell_11 = $("<th />");
+            headerCell_11.html("Action");
+            row.append(headerCell_11);
+
+           
+            //Add the data rows.
+            Object.keys(_mbrInfos).forEach(function(key){
+                row = $(table[0].insertRow(-1));
+
+                var cell_1 = $("<td />");
+                cell_1.html(_mbrInfos[key]._Id);
+                row.append(cell_1);
+
+                var cell_2 = $("<td />");
+                cell_2.html(_mbrInfos[key]._fname);
+                row.append(cell_2);
+
+                var cell_3 = $("<td />");
+                cell_3.html(_mbrInfos[key]._lname);
+                row.append(cell_3);
+
+                var cell_4 = $("<td />");
+                cell_4.html(_mbrInfos[key]._nationality);
+                row.append(cell_4);
+
+                var cell_5 = $("<td />");
+                cell_5.html(_mbrInfos[key]._gender);
+                row.append(cell_5);
+
+                var cell_6 = $("<td />");
+                cell_6.html(_mbrInfos[key]._dob);
+                row.append(cell_6);
+
+                var cell_7 = $("<td />");
+                cell_7.html(_mbrInfos[key]._interests);
+                row.append(cell_7);
+
+                var cell_8 = $("<td />");
+                cell_8.html(_mbrInfos[key]._address);
+                row.append(cell_8);
+
+                var cell_9 = $("<td />");
+                cell_9.html(_mbrInfos[key]._mobile);
+                row.append(cell_9);
+
+                var cell_10 = $("<td />");
+                cell_10.html(_mbrInfos[key]._email);
+                row.append(cell_10);                
+
+                row.append(
+                    // '<button class="btn btn-primary" type="button" onclick="onUpdate(' +
+                    // key +
+                    // ')" >Update</button>'
+                    `<button class="btn btn-primary" type="button" onclick="onUpdate('${key}')" >Update</button>`
+                );
+                row.append(
+                    // '<button class="btn btn-danger" type="button" onclick="onDelete(' +
+                    // key +
+                    // ')" >Delete</button>'
+                    
+                    `<button class="btn btn-danger" type="button" onclick="onDelete('${key}')" >Delete</button>`
+                );
+            })
+            // for (var i = 0; i < _mbrInfos.length; i++) {
+            //     row = $(table[0].insertRow(-1));
+
+            //     var cell_1 = $("<td />");
+            //     cell_1.html(_mbrInfos[i]._Id);
+            //     row.append(cell_1);
+
+            //     var cell_2 = $("<td />");
+            //     cell_2.html(_mbrInfos[i]._fname);
+            //     row.append(cell_2);
+
+            //     var cell_3 = $("<td />");
+            //     cell_3.html(_mbrInfos[i]._lname);
+            //     row.append(cell_3);
+
+            //     var cell_4 = $("<td />");
+            //     cell_4.html(_mbrInfos[i]._nationality);
+            //     row.append(cell_4);
+
+            //     var cell_5 = $("<td />");
+            //     cell_5.html(_mbrInfos[i]._gender);
+            //     row.append(cell_5);
+
+            //     var cell_6 = $("<td />");
+            //     cell_6.html(_mbrInfos[i]._dob);
+            //     row.append(cell_6);
+
+            //     var cell_7 = $("<td />");
+            //     cell_7.html(_mbrInfos[i]._interests);
+            //     row.append(cell_7);
+
+            //     var cell_8 = $("<td />");
+            //     cell_8.html(_mbrInfos[i]._address);
+            //     row.append(cell_8);
+
+            //     var cell_9 = $("<td />");
+            //     cell_9.html(_mbrInfos[i]._mobile);
+            //     row.append(cell_9);
+
+            //     var cell_10 = $("<td />");
+            //     cell_10.html(_mbrInfos[i]._email);
+            //     row.append(cell_10);
+
+            //     row.append(
+            //         '<button class="btn btn-primary" type="button" onclick="onUpdate(' +
+            //         _mbrInfos[i]._Id +
+            //         ')" >Update</button>'
+            //     );
+            //     row.append(
+            //         '<button class="btn btn-danger" type="button" onclick="onDelete(' +
+            //         _mbrInfos[i]._Id +
+            //         ')" >Delete</button>'
+            //     );
+            // }
+
+            $("main").append(table);
+        }
+
+        function onUpdate(key) {
+            window.location.assign(
+                `mbrRegister.html?Id=${key}&Update=true`                
+            );
+        }
+
+        function onDelete(key) {
+                
+            localStorage.removeItem(`${key}`);
+            alert(`${key} is removed`);
+            location.reload();
+        }
+    </script>
+    <style>
+        
+        main{
+            text-align: center;
+            /* justify-items: center; */
+        }
+        ul{
+            line-height: 2.5em;
+            list-style: none;
+            
+        }
+        input[type=radio]{
+            display: inline;
+        }
+        
+    </style>
+    
+    <title>Silent Library</title>
+   
+    
+</head>
+<body>
+    <header>       
+		
+	</header>
+   
+    <main>
+        
+    </main>
+    <footer>
+                
+    </footer>    
+</body>
+</html>

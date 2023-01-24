@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("header").load("header.html");
+            $("footer").load("footer.html");
+        })
+    </script>
+    <style>
+        
+        .ul-container > ul{
+            display: block;
+            column-count: 2;
+            column-width: 25vw;
+            list-style: none;            
+
+        }
+        .ul-container > ul > li{
+            text-align: center;            
+
+        }
+        
+        .cover-thumbnail{
+            height: 250px;
+            width:auto;
+        }
+        .title{
+            vertical-align: middle;
+        }
+    </style>
+    
+    <title>Silent Library</title>
+    
+</head>
+<body>
+    <header>       
+		
+	</header>
+   
+    <main>
+        <div class="ul-container">
+            
+            <ul>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book1.jpg">
+                    <figcaption><a href="#">Get Coding: Learn HTML, CSS and Javascript And build a Website, App and More</a></figcaption>
+                    <p><span style="color: green;">Available</span></p>                    
+                </li>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book2.jpg">
+                    <figcaption><a href="#">Freakonomics</a></figcaption>
+                    <p><span style="color:green">Available</span></p>
+                </li>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book3.jpg">
+                    <figcaption><a href="#">King Hugo's Huge Ego</a></figcaption>
+                    <p><span style="color: green;">Available</span></p>
+                </li>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book4.jpg">
+                    <figcaption><a href="#">The Shining</a></figcaption>
+                    <p><span style="color:red">On Loan Till 17/01/2023</span> </p>
+                </li>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book5.jpg">
+                    <figcaption><a href="#">The Intelligent Investor</a></figcaption>
+                    <p><span style="color:red">On Loan Till 20/01/2023</span> </p>
+                </li>
+                <li>
+                    <img class="cover-thumbnail" src="../res/img/book6.jpg">
+                    <figcaption><a href="#">Animal Farm</a></figcaption>
+                   <p><span style="color:red">On Loan Till 25/01/2023</span> </p>
+                </li>
+            </ul>
+
+
+        </div>
+
+    </main>
+    <footer>
+                
+    </footer>    
+</body>
+</html>

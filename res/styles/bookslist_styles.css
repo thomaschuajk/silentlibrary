@@ -1,0 +1,19 @@
+.ul-container > ul{
+    display: block;
+    column-count: 2;
+    column-width: 25vw;
+    list-style: none;            
+
+}
+.ul-container > ul > li{
+    text-align: center;            
+
+}
+
+.cover-thumbnail{
+    height: 250px;
+    width:auto;
+}
+.title{
+    vertical-align: middle;
+}
